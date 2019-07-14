@@ -24,4 +24,20 @@ yargs.command({
   }
 });
 
+//create a delete by title command
+yargs.command({
+  command: 'delete',
+  describe: 'Delete the Note by its title',
+  builder: {
+    title: {
+      describe: 'Note Title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    notes.DeleteNoteByTitle(argv.title);
+  }
+});
+
 yargs.parse();

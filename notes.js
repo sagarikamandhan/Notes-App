@@ -36,6 +36,20 @@ const addNote = (title, body) => {
   }
 };
 
+const deleteNoteByTitle = title => {
+  const notes = loadNotes();
+  const filteredNotes = notes.filter(note => note.title != title);
+  //Note Exists
+  if (filteredNotes < notes) {
+    saveNotes(filteredNotes);
+    console.log(chalk.green.inverse('Note is Deleted'));
+  } //Note doesn't exist
+  else if (filteredNotes.length === notes.length) {
+    console.log(chalk.red.inverse('No Note Found!'));
+  }
+};
+
 module.exports = {
-  AddNote: addNote
+  AddNote: addNote,
+  DeleteNoteByTitle: deleteNoteByTitle
 };
