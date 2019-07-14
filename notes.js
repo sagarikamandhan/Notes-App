@@ -1,5 +1,6 @@
 const fs = require('fs');
 const chalk = require('chalk');
+const ctable = require('console.table');
 
 const loadNotes = () => {
   try {
@@ -19,6 +20,7 @@ const saveNotes = notes => {
   fs.writeFileSync('notes.json', notesJSON);
 };
 
+//Add a Note
 const addNote = (title, body) => {
   //loadNotes return the array of notes.
   //push the note into the array
@@ -36,6 +38,7 @@ const addNote = (title, body) => {
   }
 };
 
+//Delete Note By Title
 const deleteNoteByTitle = title => {
   const notes = loadNotes();
   const filteredNotes = notes.filter(note => note.title != title);
@@ -49,7 +52,18 @@ const deleteNoteByTitle = title => {
   }
 };
 
+// List all the Notes
+const getAllNotes = () => {
+  const notes = loadNotes();
+  if (notes.length > 0) {
+    console.table(notes);
+  } else {
+    console.log(chalk.red('Empty List'));
+  }
+};
+
 module.exports = {
   AddNote: addNote,
-  DeleteNoteByTitle: deleteNoteByTitle
+  DeleteNoteByTitle: deleteNoteByTitle,
+  GetAllNotes: getAllNotes
 };

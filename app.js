@@ -40,4 +40,14 @@ yargs.command({
   }
 });
 
+// create list command
+
+yargs.command({
+  command: 'list',
+  describe: 'List all the Notes',
+  handler(argv) {
+    notes.GetAllNotes();
+  }
+});
+
 yargs.parse();
