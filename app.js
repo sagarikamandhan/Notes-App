@@ -45,8 +45,31 @@ yargs.command({
 yargs.command({
   command: 'list',
   describe: 'List all the Notes',
-  handler(argv) {
+  handler() {
     notes.GetAllNotes();
+  }
+});
+
+//create update command
+
+yargs.command({
+  command: 'update',
+  describe: 'Update the Note',
+  builder: {
+    title: {
+      describe: 'Note Title',
+      demandOption: true,
+      type: 'string'
+    },
+    body: {
+      describe: 'Note Description',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+
+  handler(argv) {
+    notes.UpdateNote(argv.title, argv.body);
   }
 });
 

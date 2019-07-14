@@ -62,8 +62,23 @@ const getAllNotes = () => {
   }
 };
 
+const updateNote = (title, body) => {
+  debugger;
+  const notes = loadNotes();
+  const noteIndex = notes.findIndex(note => note.title == title);
+  if (noteIndex > -1) {
+    notes[noteIndex].body = body;
+    saveNotes(notes);
+    console.log(chalk.green.inverse('Note is Updated'));
+  } //Note doesn't exist
+  else {
+    console.log(chalk.red('Note not found!'));
+  }
+};
+
 module.exports = {
   AddNote: addNote,
   DeleteNoteByTitle: deleteNoteByTitle,
-  GetAllNotes: getAllNotes
+  GetAllNotes: getAllNotes,
+  UpdateNote: updateNote
 };
